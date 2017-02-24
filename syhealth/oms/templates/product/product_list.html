@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+<title>双圆健康</title>
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static "oms/css/base.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "oms/css/changelists.css" %}" />
+
+<script type="text/javascript" src="{% static "oms/js/jsi18n" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/core.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/jquery.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/jquery.init.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/RelatedObjectLookups.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/actions.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/urlify.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/prepopulate.js" %}"></script>
+<script type="text/javascript" src="{% static "oms/js/xregexp.min.js" %}"></script>
+
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+
+<body class=" app-order model-product change-list"
+  data-admin-utc-offset="0">
+
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name"><a href="{% url 'oms:ProductList' %}">欢迎使用双圆健康在线订货</a></h1>
+        </div>
+        <div id="user-tools">
+                欢迎登录,
+                <a href="{% url 'oms:UserProfile' user.username %}"><strong>{{ user.username }}</strong> /
+                <a href="{% url 'oms:UserChangePasswd' %}">修改密码</a> /
+                <a href="{% url 'oms:UserLogout' %}">退出</a>
+        </div>
+    </div>
+    <!-- END Header -->
+
+    <div class="breadcrumbs">
+        <a href="{% url 'oms:ProductList' %}">主页</a>
+        <a href="{% url 'oms:ProductList' %}">&rsaquo; 库存产品列表</a>
+    </div>
+
+    <!-- Content -->
+    <div id="content" class="flex">
+        <div id="content-main">
+        <h1>选择产品操作</h1>
+        <ul class="object-tools">
+            {% if user.syuser.is_admin %}
+            <li>
+              <a href="{% url 'oms:ProductCreation' %}" class="addproduct">添加产品</a>
+              <a href="{% url 'oms:OrderList' %}" class="ReviewOrder">管理订单</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'oms:CartItemList' %}" id="shopping cart">购物车</a>
+              <a href="{% url 'oms:OrderList' %}" id="order list">查看订单</a>
+              <a href="{% url 'oms:RetailerInfoList' %}" id="Retailer info list">管理收货地址</a>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- still unknown whether it need to add change button -->
+        <div class="module" id="changelist">
+        {# added by Jared here #}
+          <form id="changelist-form" method="post" novalidate> {% csrf_token %}
+
+<div class="results">
+  <table id="result_list">
+  <thead>
+  <tr>
+<!--    <th scope="col"  class="action-checkbox-column">
+      <div class="text"><span><input type="checkbox" id="action-toggle" /></span></div>
+      <div class="clear"></div>
+    </th>  -->
+    <th scope="col"  class="sortable column-product_name">
+      <div class="text"><a href="?o=1">产品名称</a></div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col"  class="sortable column-product_description">
+      <div class="text"><a href="?o=2">产品描述</a></div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col"  class="sortable column-quantity">
+      <div class="text"><a href="?o=3">库存数量</a></div>
+      <div class="clear"></div>
+    </th>
+    {% if user.syuser.is_admin %}
+    <th scope="col"  class="sortable column-quantity">
+      <div class="text"><a href="?o=3">预订数量</a></div>
+      <div class="clear"></div>
+    </th>
+    {% endif %}
+    <th scope="col"  class="sortable column-price">
+      <div class="text"><a href="?o=4">产品单价</a></div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col"  class="sortable column-discount">
+      <div class="text"><a href="?o=5">折扣</a></div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col"  class="sortable column-discount">
+      <div class="text"><a href="?o=5">状态</a></div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col"  class="sortable column-discount">
+      <div class="text"><a href="?o=6">操作</a></div>
+      <div class="clear"></div>
+    </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  {% for product in product_list %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+<!--      <td class="action-checkbox">
+        <input class="action-select" name="_selected_action" type="checkbox" value="{{product.id}}"/>
+      </td>  -->
+      <th class="field-product_name"><a href="{% url 'oms:ProductDetail' product.id %}">{{product.product_name}}</a></th>
+      <td class="field-product_description">{{product.product_description}}</td>
+      <td class="field-quantity">{{product.quantity}}</td>
+      {% if user.syuser.is_admin %}
+      <td class="field-quantity">{{product.reserved_quantity}}</td>
+      {% endif %}
+      <td class="field-price">{{product.price}}</td>
+      <td class="field-discount">{{product.discount}}</td>
+      {% if product.status %}
+      <td class="field-price">在售</td>
+      {% else %}
+      <td class="field-status">已下架</td>
+      {% endif %}
+      <td>
+        {% if user.is_superuser %}
+          <a href="{% url 'oms:ProductUpdate' product.id %}">修改</a> / 
+          <a href="{% url 'oms:ProductDelete' product.id %}">删除</a>
+        {% elif user.syuser.is_admin %}
+          <a href="{% url 'oms:ProductUpdate' product.id %}">修改</a>
+        {% else %}
+          <a href="{% url 'oms:CartItemCreate' product.id %}">购买</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+</div>
+<!-- Results ended -->
+
+<!-- pagination here -->
+<div class="pagination">
+    <span class="step-links">
+        {% if product_list.has_previous %}
+            <a href="?page={{ product_list.previous_page_number }}">上一页</a>
+        {% endif %}
+        <span class="current">
+            第{{ product_list.number }}页/共{{ product_list.paginator.num_pages }}页 
+        </span>
+        {% if product_list.has_next %}
+            <a href="?page={{ product_list.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+</div>
+       </form> 
+    <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+</div>
+<!-- END Container -->
+
+    <div id="footer" class="breadcrumbs">
+        <ul>@2016 Copy Right. Powered by Django.</ul>
+        <ul>所有数据信息属于双圆健康，未经授权不可使用及泄漏。</ul>
+    </div>
+
+</body>
+</html>
+

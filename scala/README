@@ -1,0 +1,8 @@
+
+Initiated by Jared on March 19, 2017.
+
+This project is for demonstrating scala project with sbt.
+
+To create project with template, usually run following command,
+sbt new sbt/scala-seed.g8
+

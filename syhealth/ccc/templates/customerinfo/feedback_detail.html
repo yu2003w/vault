@@ -1,0 +1,74 @@
+{% extends "customerinfo_base.html" %}  
+  
+{% block operation %}
+&rsaquo;<a href = "{% url 'ccc:CustomerInfoDetail' cust_id %}">{{cust_name}}</a>
+&rsaquo;<a href = "{% url 'ccc:CustomerFeedbackList' cust_id %}">反馈数据列表</a>
+&rsaquo; 反馈详情
+{% endblock %}
+
+{% block content %}  
+{% if detail %}
+<div class="results">
+  <table id="result_list" border="1">
+    <tbody>
+      <tr>
+        <td colspan="2">反馈日期</td><td colspan="3">{{detail.feed_date}}</td>
+        <td colspan="2">体重</td><td>{{detail.weight}}kg</td>
+      </tr><tr>
+        <td colspan="2">燃值</td>
+        <td colspan="6">{{detail.fv}}</td>
+      </tr><tr>
+        <td colspan="2">血压</td>
+        <td>收缩压</td><td>{{detail.sbp}}</td>
+        <td>舒张压</td><td>{{detail.dbp}}</td>
+        <td>测量时间</td><td>{{detail.bp_time}}</td>
+      </tr><tr>
+        <td colspan="2">血糖</td>
+        <td>空腹血糖</td><td>{{detail.fbg}}</td>
+        <td>餐后血糖</td><td>{{detail.pbg}}</td>
+        <td>测量时间</td><td>{{detail.bg_time}}</td>
+      </tr><tr>
+        <td colspan="3">有氧运动时间</td><td colspan="5">{{detail.sports_time}}</td>
+      </tr><tr>
+        <td colspan="2">调理反应</td><td colspan="6">{{detail.op_react}}</td>
+      </tr><tr>
+        <td colspan="2">其它不适</td><td colspan="6">{{detail.other_dis}}</td>
+      </tr><tr>
+        <td colspan="2">体会及反馈</td><td colspan="6">{{detail.feedback}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% if user.syuser.is_admin %}
+ <table id="result_list">
+   <thead>
+     <tr>
+       <th scope="col">
+         <div class="text">变更原因</div>
+       </th>
+       <th scope="col">
+         <div class="text">变更时间</div>
+       </th>
+       <th scope="col">
+         <div class="text">操作员</div>
+       </th>
+     </tr>
+   </thead>
+
+   <tbody>
+   {% for cr_his in product_detail.productcr_set.all %}
+     <tr class="row1">
+       <td><a>{{cr_his.cr_reason}}</a></td>
+       <td><a>{{cr_his.updated_date}}</a></td>
+       <td><a>{{cr_his.user_admin}}</a></td>
+     </tr>
+   {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+{% else %}
+    <li>还没有录入的产品信息！</li>
+{% endif %}
+
+
+{% endblock %}

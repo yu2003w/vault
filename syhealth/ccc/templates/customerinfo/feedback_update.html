@@ -1,0 +1,70 @@
+{% extends "customerinfo_base.html" %}  
+  
+{% load i18n %}
+
+{% block operation %}
+&rsaquo;<a href = "{% url 'ccc:CustomerInfoDetail' cust_id %}">{{cust_name}}</a>
+&rsaquo;<a href = "{% url 'ccc:CustomerFeedbackList' cust_id %}">反馈数据列表</a>
+&rsaquo;修改反馈数据
+{% endblock %}
+{% block content %}  
+<br>
+<form action="" method="post" class="flex" enctype="multipart/form-data">{% csrf_token %}
+    <fieldset class="module aligned">
+         <p>
+           {{form.feed_date.errors}}
+           {{form.feed_date.label_tag}} {{form.feed_date}}
+           {{form.weight.errors}}
+           {{form.weight.label_tag}}(kg) {{form.weight}} 
+         </p><p>
+           {{form.fv.errors}} {{form.fv.label_tag}}
+           <input id="{{form.fv.auto_id}}" maxlength="64" name="{{form.fv.name}}" type="text" size = "64" value="{{form.fv.value}}"/>
+         </p>
+         <p>
+            血压：
+            {{form.sbp.errors}}
+            {{form.sbp.label_tag}} {{form.sbp}}
+            {{form.dbp.errors}}
+            {{form.dbp.label_tag}} {{form.dbp}}
+            {{form.bp_time.errors}}
+            {{form.bp_time.label_tag}} {{form.bp_time}}
+         </p>
+         <p><hr /></p>
+         <p>
+            血糖：
+            {{form.fbg.errors}}
+            {{form.fbg.label_tag}} {{form.fbg}}
+            {{form.pbg.errors}}
+            {{form.pbg.label_tag}} {{form.pbg}}
+            {{form.bg_time.errors}}
+            {{form.bg_time.label_tag}} {{form.bg_time}}
+         </p>
+         <p><hr /></p>
+         <p>
+            {{form.sports_time.errors}} {{form.sports_time.label_tag}}
+            {{form.sports_time}}
+         </p>
+         <p><hr /></p>
+         <p>
+            {{form.op_react.errors}} {{form.op_react.label_tag}}
+            <input id="{{form.op_react.auto_id}}" maxlength="128" name="{{form.op_react.name}}" type="text"
+              size = "128" value ="{{form.op_react.value}}"/>
+         </p>
+         <p><hr /></p>
+         <p>
+            {{form.other_dis.errors}} {{form.other_dis.label_tag}} <br/>
+            <textarea cols="128" id="id_other_dis" maxlength="256" name="other_dis" rows="2" >{{form.other_dis.value}}</textarea>
+         </p>
+         <p><hr /></p>
+         <p>
+            {{form.feedback.errors}} {{form.feedback.label_tag}} <br/> 
+            <textarea cols="128" id="id_feedback" maxlength="256" name="feedback" rows="2" >{{form.feedback.value}}</textarea>
+         </p>
+    </fieldset>
+    <div class="submit-row">
+      <input type="submit" value="{% trans '修改' %}" class="default" />
+    </div>
+</form>
+
+{% endblock %}
+

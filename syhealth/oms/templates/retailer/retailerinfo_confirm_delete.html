@@ -1,0 +1,39 @@
+{% extends "product_base.html" %}  
+  
+{% block operation %}
+<a href="{% url 'oms:RetailerInfoList' %}">&rsaquo; 收货地址列表</a>
+&rsaquo;删除收货地址
+{% endblock %}
+
+{% block content %}  
+<div id="content" class="flex">
+  <div id="content-main">
+    <h1>收货人详细信息</h1>
+  </div>
+  {% if retailerinfo_detail %}
+  <table id="result_list">
+
+    <tbody>
+      <tr class="row1">
+       <td><a>收货人姓名</a></td>
+       <td><a>{{retailerinfo_detail.retailer_name}}</a></td>
+      </tr>
+      <tr>
+       <td><a>电话</a></td>
+       <td><a>{{retailerinfo_detail.phone}}</a></td>
+      </tr>
+      <tr>
+       <td><a>详细地址</a></td>
+       <td><a>{{retailerinfo_detail.address}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
+<p>确定要删除这条记录吗？</p>
+<form action="" method="post">
+{% csrf_token %}
+<input type="submit" value="删除" />
+</form>
+</div>
+{% endblock %}
+

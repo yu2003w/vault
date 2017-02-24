@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+<title>双圆健康客户关怀中心</title>
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+<link rel="stylesheet" type="text/css" href="{% static "ccc/css/base_ccc.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "ccc/css/widgets.css" %}" />
+
+<script type="text/javascript" src="{% static "ccc/js/jsi18n" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/core.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/jquery.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/jquery.init.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/RelatedObjectLookups.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/actions.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/urlify.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/prepopulate.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/xregexp.min.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/calendar.js" %}"></script>
+<script type="text/javascript" src="{% static "ccc/js/DateTimeShortcuts.js" %}"></script>
+
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+
+<body class=" app-order model-product change-list"
+  data-admin-utc-offset="0">
+
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name"><a href="{% url 'ccc:CustomerInfoList' %}">欢迎访问双圆健康客户关怀中心</a></h1>
+        </div>
+        <div id="user-tools">
+                欢迎登录,
+                <a ><strong>{{user.username}}</strong></a> /
+                <a href="{% url 'ccc:UserChangePasswd' %}">修改密码</a> /
+                <a href="{% url 'ccc:UserLogout' %}">退出</a>
+        </div>
+    </div>
+    <!-- END Header -->
+
+    <div class="breadcrumbs">
+        <a href="{% url 'ccc:CustomerInfoList' %}">主页</a>
+        <a href="{% url 'ccc:CustomerInfoList' %}">&rsaquo; 客户列表 </a>
+        {% block operation %}{% endblock %}
+    </div>
+
+    <div id="content" class="flex">
+    {% block content %}{% endblock %} 
+    </div>
+
+    <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    <div id="footer" class="breadcrumbs">
+    <ul>Copyright@2016, Powered by Django.</ul>
+    <ul>双圆健康版权所有， 未经授权不得使用及泄漏所有信息。</ul>
+    </div>
+
+</body>
+</html>

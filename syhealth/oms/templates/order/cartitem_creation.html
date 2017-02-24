@@ -1,0 +1,30 @@
+{% extends "product_base.html" %}  
+  
+{% load i18n %}
+
+{% block operation %}
+   &rsaquo;购买产品
+{% endblock %}
+{% block content %}  
+
+<div id="content" class="flex">
+{% if product_detail %} 
+     <p>产品名称 - {{product_detail.product_name}} <br/>
+     产品描述 - {{product_detail.product_description}} <br/>
+     库存数量 - {{product_detail.quantity}} <br/>
+     产品单价 - {{product_detail.price}} <br/>
+     折扣 - {{product_detail.discount}}<br/>
+     <hr/>
+     </p>
+{% endif %} 
+
+<form action="" method="post">{% csrf_token %}
+    <fieldset class="module aligned ">
+      {{ form.as_p }}
+    </fieldset>
+    <div class="submit-row">
+      <input type="submit" value="{% trans '加入购物车' %}" class="default" />
+    </div>
+</form>
+</div>
+{% endblock %}

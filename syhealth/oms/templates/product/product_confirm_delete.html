@@ -1,0 +1,32 @@
+{% extends "product_base.html" %}  
+  
+{% load i18n %}
+
+{% block operation %}
+   &rsaquo;删除产品
+{% endblock %}
+
+{% block content %}  
+<table>
+{% if product_detail %}
+     <tr>产品名称 - {{product_detail.product_name}} <tr/><br>
+     <tr>产品描述 - {{product_detail.product_description}} <tr/><br>
+     <tr>库存数量 - {{product_detail.quantity}} <tr/></br>
+     <tr>产品单价 - {{product_detail.price}} <tr/></br>
+     <tr>折扣 - {{product_detail.discount}}<tr/></br>
+     </p>
+{% else %}
+    <li>还没有录入的产品信息！</li>
+{% endif %}
+</table>
+
+<p>确定要删除这条记录吗？</p>
+<form action="" method="post">
+{% csrf_token %}
+    <div class="submit-row">
+      <input type="submit" value="{% trans '删除' %}" class="default" />
+    </div>
+</form>
+
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends "product_base.html" %}  
+  
+{% load i18n %}
+
+{% block operation %}
+   &rsaquo;购物车结算
+{% endblock %}
+{% block content %}  
+
+<div id="content" class="flex">
+{% if count <= 0 %}
+<p><h3>购物车空空如也，请<a href="{% url 'oms:ProductList' %}">选购商品</a>后再结算</h3></p>
+{% else %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+<div class="results">
+    <table id="result_list">
+       <thead>
+         <tr>
+           <th scope="col"  class="sortable column-product_name">
+             <div class="text"><a>产品名称</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-product_price">
+             <div class="text"><a>产品单价</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-quantity">
+             <div class="text"><a>库存数量</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-quantity_wanted">
+             <div class="text"><a>订购数量</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-operation">
+             <div class="text"><a>操作</a></div>
+             <div class="clear"></div>
+           </th>
+         </tr>
+       </thead>
+
+        <tbody>
+    {% for form in formset %}
+            {{ form.id }} 
+          <tr class="{% cycle 'row1' 'row2' %}">
+            <td><a>{{form.instance.pro_selected }}</a></td>
+            <td><a>{{form.instance.pro_selected.price}}</a></td>
+            <td><a>{{form.instance.pro_selected.quantity}}</a></td>
+            <td> 
+              {% if form.quantity_wanted.errors %}
+                {{form.quantity_wanted.errors}}
+              {% endif %}
+              {% if form.non_field_errors %}
+                {{ form.non_field_errors }}
+              {% endif %}
+              <a>{{form.quantity_wanted }}</a>
+            </td>
+            {% if formset.can_delete %}
+            <td><a>删除</a>{{form.DELETE}}</td>
+            {% endif %}
+          </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+</div>
+   <div class="submit-row">
+      <input type="submit" value="{% trans '下一步' %}" class="default" />
+   </div>
+</form>
+{% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends "product_base.html" %}  
+  
+{% block operation %}
+   &rsaquo;订单结算
+{% endblock %}
+{% block content %}  
+
+<div id="content" class="flex">
+{% if cart_empty == True %}
+<p><h3>还没有选中的产品，请先<a href = "{% url 'oms:ProductList' %}">选购产品</a>再结算.</h3></p>
+{% else %}
+  <div id="content-main">
+    <h3>
+      <a>订购产品明细</a>&rsaquo;&rsaquo;
+      <a href="{% url 'oms:CartItemList' %}">返回购物车修改</a>
+    </h3>
+  </div>
+
+  <div class="results">
+    <table id="result_list">
+       <thead>
+         <tr>
+           <th scope="col"  class="sortable column-product_name">
+             <div class="text"><a>产品名称</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-product_price">
+             <div class="text"><a>产品单价</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-quantity_wanted">
+             <div class="text"><a>订购数量</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-quantity_wanted">
+             <div class="text"><a>折扣</a></div>
+             <div class="clear"></div>
+           </th>
+           <th scope="col"  class="sortable column-operation">
+             <div class="text"><a>总价</a></div>
+             <div class="clear"></div>
+           </th>
+         </tr>
+       </thead>
+       <tbody>
+       {% for item in cart.set %} 
+       <tr class="{% cycle 'row1' 'row2' %}">
+         <td><a>{{item.name}}</a> </td>
+         <td><a>{{item.price}}</a> </td>
+         <td><a>{{item.quantity}}</a> </td>
+         <td><a>{{item.discount}}</a> </td>
+         <td><a>{{item.cost}}</a> </td>
+       </tr>
+       {% endfor %} 
+       <tr class="{% cycle 'row1' 'row2' %}">
+         <td><a>合计:</a></td>
+         <td></td><td></td><td></td>
+         <td>{{cart.product_cost}}</td>
+       </tr>
+       </tbody>
+    </table>
+   </div>
+
+<form action="" method="post">{% csrf_token %}
+  <fieldset class="module aligned ">
+    {% if not retailers %}
+      <div id="content-main">
+        <h3><a href="{% url 'oms:RetailerInfoCreate' %}">请先添加收货人信息</a>
+      </div>
+
+    {% else %}
+    <div id="content-main">
+      <br>
+      <h3>请选择收货人地址</h3>
+    </div>
+    <!-- noted here, select name should be the field defined in form -->
+    <select name = "deliver_addr" id = "retailer_selected">
+      <option value = "" selected = "selected">请选择收货人</option>
+      {% for retailer in retailers %}
+      <option value = "{{retailer.id}}"> {{retailer.retailer_name}} </option>
+      {% endfor %} 
+    </select>
+    <div class = 'submit-row'> 
+      <input type="submit" value="下一步" class="default" />
+    </div>
+    {% endif %}
+  </fieldset>
+</form>
+{% endif %}
+</div>
+{% endblock %}
+

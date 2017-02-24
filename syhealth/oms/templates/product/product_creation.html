@@ -1,0 +1,36 @@
+{% extends "product_base.html" %}  
+  
+{% load i18n %}
+
+{% block operation %}
+   &rsaquo;添加产品
+{% endblock %}
+{% block content %}  
+<br>
+<form action="" method="post">{% csrf_token %}
+    <fieldset class="module aligned ">
+    <p>
+      {{form.product_name.errors}} {{form.product_name.label_tag}}
+      <input id="{{form.product_name.auto_id}}" maxlength="64" name="{{form.product_name.name}}" type="text" size = "64" />
+    </p><p><hr /></p><p>
+      {{form.product_description.errors}} {{form.product_description.label_tag}}
+      <textarea cols="128" id="{{form.product_description.auto_id}}" maxlength="1024" 
+        name="{{form.product_description.name}}" rows="8" ></textarea>
+    </p><p><hr /></p><p>
+      {{form.quantity.errors}} {{form.quantity.label_tag}} {{form.quantity}}
+    </p><p><hr /></p><p>
+      {{form.price.errors}} {{form.price.label_tag}} {{form.price}}
+    </p><p><hr /></p><p>
+      {{form.discount.errors}} {{form.discount.label_tag}} {{form.discount}}
+    </p><p><hr /></p><p>
+      {{form.reserved_quantity.errors}} {{form.reserved_quantity.label_tag}} {{form.reserved_quantity}}
+    </p><p>
+      {{form.status.errors}} {{form.status.label_tag}} {{form.status}}
+    <p>
+    </fieldset>
+    <div class="submit-row">
+      <input type="submit" value="{% trans '保存' %}" class="default" />
+    </div>
+</form>
+
+{% endblock %}
