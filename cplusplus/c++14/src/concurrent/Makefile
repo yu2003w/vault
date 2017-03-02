@@ -12,7 +12,7 @@ CXXFLAGS = -g1 -O0 -Wno-unused-local-typedefs -std=c++11 -fpic -DDEBUG -pthread
 
 #LDFLAGS = -fPIC -DPIC -shared -lmesos -lrestclient-cpp -lsasl2
 
-OBJS = basic.o
+OBJS = basic.o sync.o
 
 %.o:%.cpp
 	$(CXX)  $(CXXFLAGS)     $(INCLUDEDIRS)  -c      $<      -o      $@
