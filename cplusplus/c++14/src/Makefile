@@ -3,7 +3,7 @@
 #
 
 CXX = g++
-CXXFLAGS = -g1 -O0 -Wno-unused-local-typedefs -std=c++14 -fpic -DDEBUG
+CXXFLAGS = -g1 -O0 -Wno-unused-local-typedefs -std=c++11 -fpic -DDEBUG
 
 #INCLUDEDIRS = -I /home/dcos/repo/mesos/build/3rdparty/glog-0.3.3/src \
 #        -I/home/dcos/repo/mesos/build/3rdparty/protobuf-2.6.1/src/ \
@@ -12,7 +12,7 @@ CXXFLAGS = -g1 -O0 -Wno-unused-local-typedefs -std=c++14 -fpic -DDEBUG
 
 #LDFLAGS = -fPIC -DPIC -shared -lmesos -lrestclient-cpp -lsasl2
 
-OBJS = misc.o test.o
+OBJS = misc.o test.o lambda_exam.o
 
 %.o:%.cpp
 	$(CXX)  $(CXXFLAGS)     $(INCLUDEDIRS)  -c      $<      -o      $@
