@@ -12,6 +12,7 @@
 #include<vector>
 
 #include "misc.hpp"
+#include "lambda_exam.hpp"
 
 using namespace std;
 
@@ -74,5 +75,7 @@ main(int argc, char** argv)
     
     test_move();   
     test_moverange();
+   
+    LambdaExam::test_basic();
 }
 

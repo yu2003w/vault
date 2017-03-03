@@ -12,7 +12,7 @@ using namespace std;
 void
 LambdaExam::test_basic()
 {
-    int a = 0;
+    int a = 2;
     auto f = [=]() { return a*2; };
     auto val = f();
     cout<<val<<endl;
