@@ -5,7 +5,7 @@
 CXX = g++
 CXXFLAGS = -g1 -O0 -Wno-unused-local-typedefs -std=c++14 -fpic -DDEBUG -pthread
 
-INCLUDEDIRS = -I /home/vault/c++14/src/ 
+INCLUDEDIRS = -I ../ 
 
 LDFLAGS = -fPIC -DPIC -pthread
 #LDFLAGS = -fPIC -DPIC -shared -lmesos -lrestclient-cpp -lsasl2
