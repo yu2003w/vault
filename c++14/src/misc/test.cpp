@@ -28,7 +28,8 @@ test_move()
 void
 printVec(const vector<string> & vec)
 {
-    for (string val:vec)
+    // range-based for loop, introduced since c++11
+    for (const string& val:vec)
          cout<<val<<" ";
 }
 
@@ -73,5 +74,6 @@ main(int argc, char** argv)
     
     test_move();   
     test_moverange();
+   
 }
 
