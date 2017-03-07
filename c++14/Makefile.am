@@ -3,6 +3,7 @@
 #
 #
 
+ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS = src/concurrent \
           src/misc \
@@ -11,8 +12,6 @@ SUBDIRS = src/concurrent \
 
 CURRENTPATH = $(/bin/pwd)
 
-AM_CPPFLAGS = -I $(CURRENTPATH)/src/concurrent/ \
-           -I $(CURRENTPATH)/src/misc/ \
-           -I $(CURRENTPATH)/src/lambda/
+AM_CPPFLAGS = -I $(CURRENTPATH)/src/ 
 
 export AM_CPPFLAGS
