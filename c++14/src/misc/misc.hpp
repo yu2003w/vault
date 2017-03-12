@@ -17,7 +17,9 @@ public:
     MiscFeature();
     int getData();
     bool setData(int);
-    auto testauto() { return 7;}
+
+    // c++11 only support deduce type for lambda functions
+    //auto testauto() { return 7;}
 
 private:
     int data;
