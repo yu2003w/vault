@@ -74,8 +74,5 @@ AX_PTHREAD([],[AC_MSG_ERROR([failed to find pthread support])])
 
 AC_CONFIG_FILES([
     Makefile
-    src/concurrent/Makefile
-    src/lambda/Makefile
-    src/misc/Makefile
-    src/test/Makefile])
+    src/Makefile])
 AC_OUTPUT

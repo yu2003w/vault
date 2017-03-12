@@ -5,10 +5,9 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = src/concurrent \
-          src/misc \
-          src/lambda \
-          src/test
+AUTOMAKE_OPTIONS = foreign
+
+SUBDIRS = src
 
 CURRENTPATH = $(/bin/pwd)
 
