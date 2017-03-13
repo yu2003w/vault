@@ -3,7 +3,7 @@
  *
  */
 
-#include "misc.hpp"
+#include <misc/misc.hpp>
 
 MiscFeature::MiscFeature()
 {

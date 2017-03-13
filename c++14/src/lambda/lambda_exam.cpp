@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include "lambda_exam.hpp"
+#include <lambda/lambda_exam.hpp>
 
 using namespace std;
 

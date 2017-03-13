@@ -5,13 +5,7 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = src/concurrent \
-          src/misc \
-          src/lambda \
-          src/test
+AUTOMAKE_OPTIONS = foreign
 
-CURRENTPATH = $(/bin/pwd)
+SUBDIRS = src
 
-AM_CPPFLAGS = -I $(CURRENTPATH)/src/ 
-
-export AM_CPPFLAGS
