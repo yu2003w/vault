@@ -77,3 +77,8 @@ libcore_la_LIBADD =
 	libmisc.la
 
 
+bin_PROGRAMS += toy
+toy_SOURCES = test/test.cpp
+toy_CPPFLAGS = $(COMMON_CPPFLAGS)
+toy_LDADD = libcore.la
+
