@@ -40,8 +40,8 @@ AM_LIBS = $(PTHREAD_LIBS)
 noinst_LTLIBRARIES += libconcurrent.la
 
 # noted: for all variables, each line should be tab started.
-libconcurrent_la_SOURCES =
-	concurrent/basic.cpp                                   \
+libconcurrent_la_SOURCES =                                    \
+	concurrent/basic.cpp                                  \
 	concurrent/sync.cpp
 
 libconcurrent_la_CPPFLAGS = $(COMMON_CPPFLAGS)
@@ -49,7 +49,7 @@ libconcurrent_la_LIBADD =
 
 noinst_LTLIBRARIES += libmisc.la
 
-libmisc_la_SOURCES =
+libmisc_la_SOURCES =                                           \
 	misc/misc.cpp                                           
 
 libmisc_la_CPPFLAGS = $(COMMON_CPPFLAGS)
@@ -57,7 +57,7 @@ libmisc_la_LIBADD =
 
 noinst_LTLIBRARIES += liblambda.la
 
-liblambda_la_SOURCES =
+liblambda_la_SOURCES =                                          \
 	lambda/lambda_exam.cpp
 
 liblambda_la_CPPFLAGS = $(COMMON_CPPFLAGS)
@@ -71,14 +71,14 @@ libcore_la_LDFLAGS = -release $(PACKAGE_VERSION)
 
 # for convenience libraries, need to tell libtool to build as C++ library
 libcore_la_LIBTOOLFLAGS = --tag=CXX
-libcore_la_LIBADD =
-	libconcurrent.la                                     \
-	liblambda.la                                         \
+libcore_la_LIBADD =                                             \
+	libconcurrent.la					\
+	liblambda.la						\
 	libmisc.la
 
 
 bin_PROGRAMS += toy
-toy_SOURCES = test/test.cpp
+toy_SOURCES = demo/demo.cpp
 toy_CPPFLAGS = $(COMMON_CPPFLAGS)
 toy_LDADD = libcore.la
 
