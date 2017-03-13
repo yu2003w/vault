@@ -5,14 +5,15 @@
 # Invoke autoconf/automake to generate necessary build files.
 #
 
+if [ -f configure.ac ];
+then
+    echo "No configure.ac found. Please go to the proper directory"
+fi
+
 autoreconf --install -Wall --verbose $@
 
 if [ $? = 0 ] ; then
-  echo "Running configuration succeeded"
-  automake -a
-  if [ $? = 0 ]; then
-    echo "Running automake -a successfully."
+    echo "Running configuration succeeded"
     echo "Please try ./configure"
-  fi
 fi
 
