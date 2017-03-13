@@ -7,7 +7,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([cplus], [0.1.0], [yu2003w@hotmail.com])
-AC_CONFIG_SRCDIR([src/concurrent/basic.cpp])
+# AC_CONFIG_SRCDIR([src])
 AC_CONFIG_HEADERS([config.h])
 
 AC_CONFIG_MACRO_DIR([m4])

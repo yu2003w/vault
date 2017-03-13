@@ -9,8 +9,8 @@ AUTOMAKE_OPTIONS = foreign
 
 SUBDIRS = src
 
-CURRENTPATH = $(/bin/pwd)
+#CURRENTPATH = $(/bin/pwd)
 
-AM_CPPFLAGS = -I $(CURRENTPATH)/src/ 
+#AM_CPPFLAGS = -I $(CURRENTPATH)/src/ 
 
-export AM_CPPFLAGS
+#export AM_CPPFLAGS
