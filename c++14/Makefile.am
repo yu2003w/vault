@@ -3,14 +3,9 @@
 #
 #
 
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS	= -I m4
 
 AUTOMAKE_OPTIONS = foreign
 
-SUBDIRS = src
+SUBDIRS	= src
 
-#CURRENTPATH = $(/bin/pwd)
-
-#AM_CPPFLAGS = -I $(CURRENTPATH)/src/ 
-
-#export AM_CPPFLAGS
