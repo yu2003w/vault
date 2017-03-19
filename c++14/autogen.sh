@@ -5,9 +5,9 @@
 # Invoke autoconf/automake to generate necessary build files.
 #
 
-if [ ! -f configure.ac ] ; then
+if [ ! -f configure.ac ]; then
     echo "No configure.ac found. Please go to the proper directory"
-    exit
+    exit 1  
 fi
 
 autoreconf --install -Wall --verbose $@
