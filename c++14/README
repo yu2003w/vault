@@ -3,7 +3,7 @@ Initially created by Jared on March 04, 2017.
 Here, code here is for learning new features introduced in C++14.
 
 Follow steps below to build the source:
-1, autogen.sh
+1, ./autogen.sh
 2, mkdir build
 3, cd build
 4, ../configure
