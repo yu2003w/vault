@@ -1,0 +1,3 @@
+Hello coders!
+fstream is very powerful in C++ for I/O operations from file.
+I have mastered file operations.
