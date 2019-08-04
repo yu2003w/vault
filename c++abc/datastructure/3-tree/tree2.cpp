@@ -25,7 +25,14 @@ const int quesesize=100;
 node * queue[quesesize];
 
 //TODO：
-//void destroyTree(node * root);
+void destroyTree(node *& root) {
+	if (root != NULL) {
+		destroyTree(root->firstchild);
+		destroyTree(root->nextsibling);
+		delete root;
+		root = NULL;
+	}
+}
 //void insertNode(node* root, char p, int k, char k);
 //void deleteNode(Node * root, char p, int k); 
 // TODO: 使用非递归算法来实现先序和后序遍历 
@@ -42,6 +49,9 @@ int main(int argc, char ** argv) {
 	levelOrderTraverse(root);
 	cout<<endl;
 	findKthChildP(root, 'G', 2);
+	destroyTree(root);
+	if (root != NULL)
+	cout<<root->data;
 }
 
 node * createTree() {

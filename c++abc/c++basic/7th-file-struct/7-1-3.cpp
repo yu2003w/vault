@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 	strcpy(b2.date, "2019-04-30");
 	strcpy(b2.author, "James");
 	cout<<b2.name<<" "<<b2.date<<" "<<b2.author<<endl;
-	
+		
 	book b3;
 	cout<<"请输入书籍信息"<<endl; 
 	cin>>b3.name>>b3.date>>b3.author;

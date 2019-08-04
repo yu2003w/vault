@@ -9,45 +9,49 @@ struct Node {
 struct Queue {
 	int front, rear, size;
 	Node ** que;
-	bool init(int size);
 	
+	bool init(int size);
 	bool enque(Node *);
 	Node * deque();
 	void emptyQueue();
 };
 
 typedef Node* PNode;
-//按照层序的顺序将1-100的数据建立二叉树 
+// create binary tree in level order
 Node * createBTree(Queue *q);
 void preOrderTraverse(Node* root);
 void preOrderTraverseWithStack(Node* root);
 void inOrderTraverse(Node* root);
 void postOrderTraverse(Node* root);
 void levelOrderTraverse(Node* root, Queue * q);
-void deleteTree(Node * root);
+void deleteTree(Node *& root);
 
 
 bool Queue::init(int n) {
-	if (size <= 0)
+	if (n <= 0)
 	    return false;
 	que = new Node*[n];
+	if (que == NULL)
+	    return false;
 	size = n;
 	front=rear=0;
 	return true;
 }
+
 bool Queue::enque(Node * p) {
 	if ((rear + 1) % size == front) {
-		cout<<"队列满"<<endl;
+		cout<<"queue is full"<<endl;
 		return false;
 	}
 	que[rear] = p;
 	rear = (rear + 1) % size;
 	return true;
 }
+
 Node * Queue::deque() {
 	Node *p = NULL;
 	if (front == rear) {
-		//cout<<"队列空"<<endl;
+		//cout<<"queue is empty"<<endl;
         return p; 
 	}
 	p = que[front];
@@ -64,17 +68,18 @@ int main(int argc, char** argv) {
 	q->init(100);
 	Node * root = createBTree(q);
 	if (root == NULL) {
-		cout<<"树空"; 
+		cout<<"failed to create tree"<<endl;
+		return 1; 
 	}
-	cout<<endl<<"先序遍历二叉树"<<endl;
+	cout<<endl<<"traverse binary tree in pre order"<<endl;
 	preOrderTraverse(root);
-	cout<<endl<<"使用stack先序遍历二叉树"<<endl;
+	cout<<endl<<"traverse binary tree in pre order using stack"<<endl;
 	preOrderTraverseWithStack(root);
-    cout<<endl<<"中序遍历二叉树"<<endl;
+    cout<<endl<<"traverse binary tree in order"<<endl;
 	inOrderTraverse(root);
-	cout<<endl<<"后序遍历二叉树"<<endl;
+	cout<<endl<<"traverse binary tree in post order"<<endl;
 	postOrderTraverse(root);
-	cout<<endl<<"层序遍历二叉树"<<endl;
+	cout<<endl<<"traverse binary tree in level order"<<endl;
     q->emptyQueue();
 	levelOrderTraverse(root,q);
 	deleteTree(root);
@@ -162,11 +167,12 @@ void levelOrderTraverse(Node * root, Queue *q) {
 	}
 }
 
-void deleteTree(Node * root) {
+void deleteTree(Node * &root) {
 	if (root != NULL) {
 		deleteTree(root->lchild);
 		deleteTree(root->rchild);
 		delete root;
+		root = NULL;
 	}
 }
 

@@ -1,0 +1,4 @@
+.vscode
+**/*.exe
+**/gmon.out
+vault.code-workspace

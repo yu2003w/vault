@@ -23,5 +23,4 @@ int main(int argc, char** argv) {
 	fs.clear();
 	fs.write(ending, strlen(ending));
 	fs.close();
-	
 }

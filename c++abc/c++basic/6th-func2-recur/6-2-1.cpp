@@ -6,14 +6,7 @@ f(n) = f(n-1)+f(n-2) n > 2
 f(1) = 1 
 f(2) = 1 
 */
-int fib(int n) {
-	/* 
-	if (n == 0) {
-		return 0;
-	}
-	else if (n == 1) {
-		return 1;
-	} */
+int fib(int n) { 
 	if (n == 1 || n == 2) {
 		return 1;
 	}
