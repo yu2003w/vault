@@ -1,0 +1,3 @@
+Build snort3 and dependencies into single container image.
+Although snort3 is opensourced, however no automation tests open sourced and no PR merged.
+And license is GNU GPLv2, it's not so easy.
