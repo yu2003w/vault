@@ -2,7 +2,8 @@
 FROM ubuntu:22.04
 # install dependencies
 RUN apt update && apt-get install -y cmake gcc g++ git autoconf libtool pkg-config check flex \
-    libssl-dev libpcap-dev libpcre++-dev zlib1g-dev liblzma-dev iproute2 wget curl iputils-ping
+    libssl-dev libpcap-dev libpcre++-dev zlib1g-dev liblzma-dev iproute2 wget curl iputils-ping && \
+    unminimize
 ENV proxy="127.0.0.1:7890"
 # build libdaq
 RUN mkdir /home/package && git config --global http.proxy $proxy

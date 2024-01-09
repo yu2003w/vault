@@ -1,0 +1,8 @@
+Test and verify some sql query using local mysql container.
+
+For first time use, create database and load data.
+1, sqldb.sh start
+2, sqldb.sh load
+3, podman exec -it sqltest /bin/bash
+4, sqldb.sh shutdown
+

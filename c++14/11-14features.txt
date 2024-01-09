@@ -1,0 +1,10 @@
+C++11/14 new features list:
+1, deducing types
+   auto, decltype
+2, auto
+3, smart pointer
+   std::unique_ptr, std::shared_ptr, std::weak_ptr
+   std::make_unique, std::make_shared
+4, std::move, std::forward
+5, lambda expression
+6, concurrency
