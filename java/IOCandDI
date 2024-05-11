@@ -1,0 +1,24 @@
+n Inversion of Control (IoC) container framework is a software component that manages the lifecycle of objects and their dependencies in an application. It helps in implementing Inversion of Control and Dependency Injection principles, where the control of object creation is taken away from your application code and managed by the IoC container.
+
+Here are some popular IoC container frameworks across different programming languages:
+
+    Java:
+        Spring Framework: Spring IoC container (often referred to simply as the Spring container) is one of the most widely used IoC containers in Java. It provides features for dependency injection, lifecycle management, and configuration using XML, annotations, or Java-based configuration.
+        Google Guice: Guice is a lightweight Java framework provided by Google for dependency injection. It allows you to wire together your application components using annotations or Java code.
+
+    C# / .NET:
+        ASP.NET Core DI (Dependency Injection): The built-in DI container in ASP.NET Core provides simple and lightweight dependency injection capabilities for .NET applications.
+        Autofac: Autofac is a popular third-party IoC container for .NET applications. It supports both constructor and property injection, as well as advanced features like nested lifetimes and interception.
+
+    Python:
+        Django: Django, a popular Python web framework, has its own built-in IoC container for managing components and dependencies.
+        Pyramid: Pyramid is another Python web framework that supports dependency injection and provides mechanisms for managing object lifecycles.
+
+    JavaScript (Node.js):
+        InversifyJS: InversifyJS is a powerful and lightweight inversion of control container for TypeScript/JavaScript apps. It supports both constructor injection and property injection.
+        Awilix: Awilix is another IoC container for Node.js that supports registration of dependencies and automatic resolution of dependencies.
+
+    Ruby:
+        Dry::Container: The Dry::Container gem provides a simple and straightforward IoC container for Ruby applications. It allows you to register dependencies and resolve them easily.
+
+These frameworks and libraries are just a few examples of IoC containers available across different programming languages. They all aim to simplify the management of object creation and dependencies in applications, promoting modular and testable code through the use of dependency injection and Inversion of Control principles. Depending on your specific programming language and application requirements, you can choose the IoC container that best fits your needs.
